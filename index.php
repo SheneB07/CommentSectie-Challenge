@@ -11,7 +11,7 @@
             <label for="name"> Name: </label>
             <input type="text" name="name" id="name" required>
 
-            <label for="comment"> Name: </label>
+            <label for="comment"> Comment: </label>
             <textarea name="comment" id="comment" rows="5" required></textarea>
 
             <input type="submit" name="submit" value="Post Comment">
