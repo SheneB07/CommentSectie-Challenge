@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
@@ -25,7 +26,16 @@
                 ?>
         </div>
 
-        <from id="replay-form" method="post" action="">
+        <form id="replay-form" method="post" action="">
+
+            <input type="text" name="parent-id" id="parent-id">
+            <label for="name">Name:</label>
+            <input type="text" name="name" id="replay-name">
+            <input type="text" name="name" id="replay-to">
+            <label for="replay-comment-text">Comment:</label>
+            <textarea name="replay-comment-text" id="replay-comment-text" rows="5" required></textarea>
+            <button type="submit" name="submit-replay">Submit</button>
+            <button name="cancel" id="Cancel-button">Cancel</button>
         </form> 
 
 
