@@ -7,7 +7,7 @@
 </head>
 <body>
     <div class="container">
-        <form action="" method="post">
+        <form action="operation.php" method="post">
             <label for="name"> Name: </label>
             <input type="text" name="name" id="name" required>
 
@@ -24,9 +24,19 @@
                 <?php
                 //display comments from database using php
                 ?>
+                <ul>
+                    <li class="comment">
+                        <div class="comment-info">
+                            <span class="comment-name">Username</span>
+                        </div>
+
+                        <div class="comment-text">Comment text here</div>
+                        <button class="reply-button">Reply</button>
+                    </li>
+                </ul>
         </div>
 
-        <form id="replay-form" method="post" action="">
+        <form id="reply-form" method="post" action="">
 
             <input type="text" name="parent-id" id="parent-id">
             <label for="name">Name:</label>
@@ -35,11 +45,14 @@
             <label for="replay-comment-text">Comment:</label>
             <textarea name="replay-comment-text" id="replay-comment-text" rows="5" required></textarea>
             <button type="submit" name="submit-replay">Submit</button>
-            <button name="cancel" id="Cancel-button">Cancel</button>
+            <button name="cancel" id="cancel-button">Cancel</button>
         </form> 
 
 
     </div>
 </div>
+
+<script src="script.js"></script>
+
 </body>
 </html>
