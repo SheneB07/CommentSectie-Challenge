@@ -7,6 +7,9 @@
 </head>
 <body>
     <div class="container">
+        <iframe width="100%" height="400"
+        src="https://www.youtube.com/embed/dpaijbLEo4Y">
+        </iframe>
         <form action="operation.php" method="post">
             <label for="name"> Name: </label>
             <input type="text" name="name" id="name" required>
@@ -25,7 +28,7 @@
                 include 'operation.php';
                 display_comments($comments);
                 ?>
-                <ul>
+                <!-- <ul>
                     <li class="comment">
                         <div class="comment-info">
                             <span class="comment-name">Username</span>
@@ -34,17 +37,17 @@
                         <div class="comment-text">Comment text here</div>
                         <button class="reply-button">Reply</button>
                     </li>
-                </ul>
+                </ul> -->
         </div>
 
         <form id="reply-form" method="post" action="operation.php">
 
-            <input type="hidden" name="parent-id" id="parent-id">
+            <input type="hidden" name="parent_id" id="parent-id">
             <label for="name">Name:</label>
             <input type="text" name="name" id="reply-name">
             <input type="hidden" name="reply-to-name" id="reply-to">
             <label for="reply-comment-text">Comment:</label>
-            <textarea name="reply-comment-text" id="reply-comment-text" rows="5" required></textarea>
+            <textarea name="comment_text" id="reply-comment-text" rows="5" required></textarea>
             <button type="submit" name="submit-reply">Submit</button>
             <button name="cancel" id="cancel-button">Cancel</button>
         </form> 
