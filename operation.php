@@ -15,10 +15,11 @@ if($_SERVER['REQUEST_METHOD'] === 'POST')
             $name = $_POST['name'];
             $comment = $_POST['comment'];
             $parent_id = null;
+            $time = date('Y-m-d H:i:s');
 
-            $stmt = $conn->prepare('INSERT INTO `comments`(`name`, `comment_text`, `parent_id`) VALUES (:name, :comment, :parent_id)');
+            $stmt = $conn->prepare('INSERT INTO `comments`(`name`, `comment_text`, `parent_id`, `time`) VALUES (:name, :comment, :parent_id, :time)');
 
-            $stmt-> execute(array(':name'=>$name,':comment'=>$comment,':parent_id'=>$parent_id));
+            $stmt-> execute(array(':name'=>$name,':comment'=>$comment,':parent_id'=>$parent_id, ':time'=>$time));
 
             header('Location: index.php');
             exit;
@@ -32,11 +33,13 @@ if($_SERVER['REQUEST_METHOD'] === 'POST')
         $replyTo = filter_input(INPUT_POST,'reply-to-name',FILTER_SANITIZE_STRING);
         $comment_text = trim($replyTo . ' ' . $raw_comment);
         $parent_id = isset($_POST['parent_id']) ? $_POST['parent_id'] : null;
+        $time = date('Y-m-d H:i:s');
+
 
         if(!empty($name) && !empty($raw_comment)){
-            $stmt = $conn->prepare('INSERT INTO `comments`(`name`, `comment_text`, `parent_id`) VALUES (:name, :comment, :parent_id)');
+            $stmt = $conn->prepare('INSERT INTO `comments`(`name`, `comment_text`, `parent_id`, `time`) VALUES (:name, :comment, :parent_id, :time)');
 
-            $stmt-> execute(array(':name'=>$name,':comment'=>$comment_text,':parent_id'=>$parent_id));
+            $stmt-> execute(array(':name'=>$name,':comment'=>$comment_text,':parent_id'=>$parent_id, ':time'=>$time));
 
             header('Location: index.php');
             exit;
@@ -50,7 +53,8 @@ if($_SERVER['REQUEST_METHOD'] === 'POST')
             'id' => $row['id'],
             'name' => $row['name'],
             'comment' => $row['comment_text'],
-            'parent_id' => $row['parent_id']
+            'parent_id' => $row['parent_id'],
+            'time' => $row['time']
         );
     }
 
@@ -58,6 +62,8 @@ function display_comments($comments, $parent_id = null) {
     echo '<ul>';
     foreach ($comments as $comment) {
         if ($comment['parent_id'] == $parent_id) {
+            $time= Carbon::parse($comment['time']); 
+            echo htmlspecialchars($time->diffForHumans());
             echo '<li class="comment">';
             echo '<div class="comment-info">';
             echo '<span class="comment-name" data-username="' . htmlspecialchars($comment['name']) . '">' . htmlspecialchars($comment['name']) . '</span>';

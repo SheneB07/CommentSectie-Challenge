@@ -7,19 +7,6 @@
 </head>
 <body>
     <div class="container">
-<?php
-use YoHang88\LetterAvatar\LetterAvatar;
-
-$avatar = new LetterAvatar('Steven Spielberg');
-
-// Square Shape, Size 64px
-$avatar = new LetterAvatar('Steven Spielberg', 'square', 64);
-
-// Save Image As PNG/JPEG
-$avatar->saveAs('path/to/filename');
-$avatar->saveAs('path/to/filename', LetterAvatar::MIME_TYPE_JPEG);
-?>
-<img src="<?php echo $avatar ?>" />
         <iframe width="100%" height="400"
         src="https://www.youtube.com/embed/dpaijbLEo4Y">
         </iframe>
