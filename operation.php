@@ -2,6 +2,12 @@
 
 require_once 'connection.php';
 
+require 'vendor/autoload.php';
+
+use Carbon\Carbon;
+
+printf("Now: %s", Carbon::now());
+
 if($_SERVER['REQUEST_METHOD'] === 'POST')
     if(isset($_POST['submit'])){
         if(!empty($_POST['name']) && !empty($_POST['comment']))
