@@ -22,7 +22,8 @@
             <h2>Comments</h2>
             <div class="comment-container">
                 <?php
-                //display comments from database using php
+                include 'operation.php';
+                display_comments($comments);
                 ?>
                 <ul>
                     <li class="comment">
