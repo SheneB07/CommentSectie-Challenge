@@ -70,7 +70,7 @@ ul{
 }
 
 #reply-form{
-    display: block;
+    display: none;
     margin-top: 25px;
 }
 

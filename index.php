@@ -37,15 +37,15 @@
                 </ul>
         </div>
 
-        <form id="reply-form" method="post" action="">
+        <form id="reply-form" method="post" action="operation.php">
 
-            <input type="text" name="parent-id" id="parent-id">
+            <input type="hidden" name="parent-id" id="parent-id">
             <label for="name">Name:</label>
-            <input type="text" name="name" id="replay-name">
-            <input type="text" name="name" id="replay-to">
-            <label for="replay-comment-text">Comment:</label>
-            <textarea name="replay-comment-text" id="replay-comment-text" rows="5" required></textarea>
-            <button type="submit" name="submit-replay">Submit</button>
+            <input type="text" name="name" id="reply-name">
+            <input type="hidden" name="reply-to-name" id="reply-to">
+            <label for="reply-comment-text">Comment:</label>
+            <textarea name="reply-comment-text" id="reply-comment-text" rows="5" required></textarea>
+            <button type="submit" name="submit-reply">Submit</button>
             <button name="cancel" id="cancel-button">Cancel</button>
         </form> 
 

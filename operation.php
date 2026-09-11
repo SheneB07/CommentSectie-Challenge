@@ -20,6 +20,23 @@ if($_SERVER['REQUEST_METHOD'] === 'POST')
         }
     }
 
+    if(isset($_POST['submit-reply'])){
+        $name= filter_input(INPUT_POST,'name',FILTER_SANITIZE_STRING);
+        $comment_text= filter_input(INPUT_POST,'comment_text',FILTER_SANITIZE_STRING);
+        $replyTo= filter_input(INPUT_POST,'reply-to-name',FILTER_SANITIZE_STRING);
+        $comment_text= $replyTo . " " . $comment_text;
+        $parent_id= $_POST['parent_id'];
+        
+        if(!empty($_POST['name']) && !empty($_POST['reply-comment-text'])){
+            $stmt = $conn->prepare('INSERT INTO `comments`(`name`, `comment_text`, `parent_id`) VALUES (:name, :comment, :parent_id)');
+
+            $stmt-> execute(array(':name'=>$name,':comment'=>$comment_text,':parent_id'=>$parent_id));
+
+            header('Location: index.php');
+            exit;
+        }
+    }
+
     $stmt = $conn->query('SELECT * FROM `comments`');
     $comments = array();
     while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
@@ -33,7 +50,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST')
 
     if($row['parent_id'] !== null)
     {
-        foreach($comment as $parent){
+        foreach($comments as $parent){
             if($parent['id'] == $row['parent_id']){
                 $parent['replies'][] = $comment;
             }
